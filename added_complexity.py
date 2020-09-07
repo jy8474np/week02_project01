@@ -3,10 +3,12 @@
 import random
 
 # import time to add player suspense and improve game play flow
-# Delay inspiration/reference: https://opensource.com/article/17/10/python-101
+# Time delay inspiration/Ref: https://opensource.com/article/17/10/python-101
 import time
 
+# Define the main function that will contain and run all
 def main():
+    # Display introduction, game rules, and teaser
     print("Welcome to Race Ya!")
     time.sleep(2)
     print("The objective is simple: Be the first player to reach 100 points.")
@@ -20,15 +22,17 @@ def main():
     time.sleep(2)
     print()
     
-    play_again = True
+    # Define play_again for continual play start/stop
+    play_again = "y"
 
-    while play_again:
+    # Begin game play loop Ref: https://dev.to/oxy_oxide/dice-rolling-game-using-python-pn
+    while play_again == "y" or play_again == "Y":
 
         # Set game scores to zero
         player_game_total = 0
         opponent_game_total = 0
         
-        # Randomly choose which player will roll first
+        # Randomly choose which player will roll first Ref: https://codereview.stackexchange.com/questions/94116/turn-based-battle-simulator
         turn = random.randint(1,2)
         if turn == 1:
             player_turn = True
@@ -41,6 +45,7 @@ def main():
             print("Your opponent will roll first.\n")
             time.sleep(1)
         
+        # Start game_total tracking loop
         while (player_game_total < 100 and opponent_game_total < 100):
             
             # create two dice for the player, with each die comprised of values from one to six
@@ -74,6 +79,7 @@ def main():
                 print()
                 time.sleep(2)
                 
+                # Create a counter to calulate player's running total
                 player_game_total = player_game_total + player_total_roll
 
             else:
@@ -93,30 +99,44 @@ def main():
                 print()
                 time.sleep(2)
                 
+                # Create a counter to calculate opponent's running total
                 opponent_game_total = opponent_game_total + opponent_total_roll
             
-            # Switch turns
+            # Switch turns Ref: https://codereview.stackexchange.com/questions/94116/turn-based-battle-simulator
             player_turn = not player_turn
             opponent_turn = not opponent_turn
 
+            # Display an up-do-date score board after each turn
             print("Score Board:")
             print("Your Score: " + str(player_game_total))
             print("Opponent's Score: " + str(opponent_game_total))
             print()
             time.sleep(2)
-            
+        
+        # Display game result message and final scores
         if (player_game_total >= 100):
             print("You win! You are the first player to reach 100 points!\n")
+            print("Final Scores:")
+            print("Your Score: " + str(player_game_total))
+            print("Opponent's Score: " + str(opponent_game_total))
+            print()
+            time.sleep(2)
         elif opponent_game_total >= 100:
             print("Your opponent reached 100 points before you did. You lose.\n")
+            print("Final Scores:")
+            print("Opponent's Score: " + str(opponent_game_total))
+            print("Your Score: " + str(player_game_total))
+            print()
+            time.sleep(2)
         else:
-            print("It's a tie! How is that even possible?!\n")
-            
-        again = input("Would you like to play again? Y/N: ")
+            print("It's a tie! Where are we, Europe?!\n")
+            print("Final Scores:")
+            print("Your Score: " + str(player_game_total))
+            print("Opponent's Score: " + str(opponent_game_total))
+            print()
+            time.sleep(2)
         
-        if (again != "Y" or "y"):
-            play_again = False
-        else:
-             play_again = True
+        # Prompt user if they want to play again
+        play_again = input("Would you like to play Race Ya! again? Y/N: ")
 
 main()

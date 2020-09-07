@@ -8,38 +8,40 @@ import time
 
 def main():
     print("Welcome to Race Ya!")
-    time.sleep(1)
+    time.sleep(2)
     print("The objective is simple: Be the first player to reach 100 points.")
     print("Can you reach 100 points before your opponent does?")
-    time.sleep(1)
+    time.sleep(3)
     print("Ready ...")
     time.sleep(1)
     print("Set ...")
     time.sleep(1)
     print("Race Ya!")
-    time.sleep(1)
+    time.sleep(2)
     print()
     
     play_again = True
-    
-    # Set game scores to zero
-    player_game_total = 0
-    opponent_game_total = 0
 
     while play_again:
+
+        # Set game scores to zero
+        player_game_total = 0
+        opponent_game_total = 0
         
         # Randomly choose which player will roll first
         turn = random.randint(1,2)
         if turn == 1:
             player_turn = True
             opponent_turn = False
-            print("You get to roll first!")
+            print("You get to roll first!\n")
+            time.sleep(1)
         else:
             player_turn = False
             opponent_turn = True
-            print("Your opponent will roll first.")
+            print("Your opponent will roll first.\n")
+            time.sleep(1)
         
-        while (player_game_total < 100 or opponent_game_total < 100):
+        while (player_game_total < 100 and opponent_game_total < 100):
             
             # create two dice for the player, with each die comprised of values from one to six
             player_die01 = random.randint(1,6)
@@ -97,18 +99,24 @@ def main():
             player_turn = not player_turn
             opponent_turn = not opponent_turn
 
-            print("Your Score:" + str(player_game_total))
-            print("Opponent's Score:" + str(opponent_game_total))
+            print("Score Board:")
+            print("Your Score: " + str(player_game_total))
+            print("Opponent's Score: " + str(opponent_game_total))
+            print()
+            time.sleep(2)
             
         if (player_game_total >= 100):
-            print("You win! You are the first player to reach 100 points!")
+            print("You win! You are the first player to reach 100 points!\n")
         elif opponent_game_total >= 100:
-            print("Your opponent reached 100 points before you did. You lose.")
+            print("Your opponent reached 100 points before you did. You lose.\n")
         else:
-             print("It's a tie! Where are we, Europe?!")
+            print("It's a tie! How is that even possible?!\n")
             
-        again = input("Would you like to play again? Y/N ")
-        if again != "Y" or "y":
+        again = input("Would you like to play again? Y/N: ")
+        
+        if (again != "Y" or "y"):
             play_again = False
+        else:
+             play_again = True
 
 main()

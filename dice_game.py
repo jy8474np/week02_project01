@@ -20,6 +20,11 @@ opponent_die02 = random.randint(1,6)
 # Calculate the sum of die01 and die02 to determine the opponents's roll total
 opponent_total_roll = opponent_die01 + opponent_die02
 
+player_game_total = 0
+opponent_game_total = 0
+
+while (player_game_total < 100 and opponent_game_total < 100):
+
 # Display results of player's turn.
 # Add time delays for player suspense and game play flow
 
@@ -37,6 +42,8 @@ print(str(player_total_roll))
 print()
 time.sleep(2)
 
+player_game_total = player_game_total + player_total_roll
+
 # Display results of opponent's turn.
 # Add time delays for player suspense and game play flow
 
@@ -52,3 +59,18 @@ print("... for a total of ...")
 time.sleep(1)
 print(str(opponent_total_roll))
 print()
+
+opponent_game_total = opponent_game_total + opponent_total_roll
+
+if player_game_total > opponent_game_total:
+print("You win! You are the first player to reach 100 points!"
+elif if opponent_game_total > player_game_total:
+print("Your opponent reached 100 points before you did. You lose."
+else:
+print("It's a tie! Where are we, Europe?!")
+
+
+
+
+
+
